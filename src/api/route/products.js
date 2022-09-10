@@ -4,6 +4,7 @@ const AppFileUtil = require('../util/file.util');
 const productsRouter = express.Router();
 
 // /api/users
+// GET ALL PRODUCTS
 productsRouter.get('/', (req, res) => {
     const search = req.query.s;
     let result = null;
@@ -17,6 +18,7 @@ productsRouter.get('/', (req, res) => {
 })
 
 // /api/users/:id
+// GET PRODUCTS BY ID
 productsRouter.get('/:id', (req, res) => {
     const productID = req.params.id;
     const products = AppFileUtil.getData('products');
@@ -31,6 +33,7 @@ productsRouter.get('/:id', (req, res) => {
 })
 
 // /api/users
+// CREATE PRODUCT
 productsRouter.post('/', (req, res) => {
     const product = req.body;
     const products = AppFileUtil.getData('products');
@@ -40,5 +43,8 @@ productsRouter.post('/', (req, res) => {
     AppFileUtil.writeData('products', products);
     res.send({ message: 'New product information saved!' });
 })
+
+// UPDATE A PRODUCT
+// DELETE A PRODUCT
 
 module.exports = productsRouter

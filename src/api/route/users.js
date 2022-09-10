@@ -38,4 +38,7 @@ usersRouter.post('/', (req, res) => {
     res.send({ message: 'new student information saved!' })
 })
 
+// TODO: UPDATE A USER
+// TODO: DELETE A USER
+
 module.exports = usersRouter;
