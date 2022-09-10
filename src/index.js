@@ -1,7 +1,9 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const apiRouter = require('./api/');
+// Note: If the file name is index.js we dont need to mention the file name.
+// Instead of ./api/index, we can write ./api
+const apiRouter = require('./api');
 
 const server = express();
 const port = 4000;
