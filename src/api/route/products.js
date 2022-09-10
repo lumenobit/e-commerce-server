@@ -3,39 +3,42 @@ const AppFileUtil = require('../util/file.util');
 
 const productsRouter = express.Router();
 
-// /api/products
+// /api/users
 productsRouter.get('/', (req, res) => {
     const search = req.query.s;
     let result = null;
-    const users = AppFileUtil.getData('users');
+    const products = AppFileUtil.getData('products');
     if (search) {
-        result = users.filter((st) => { return st.name.toLowerCase().startsWith(search.toLowerCase()) })
+        result = products.filter((pd) => { return pd.name.toLowerCase().startsWith(search.toLowerCase()) })
+    } else {
+        result = products;
     }
-    else {
-        result = users;
-    }
-
     res.send(result);
 })
 
-// /api/products/:id
+// /api/users/:id
 productsRouter.get('/:id', (req, res) => {
-    const studentID = req.params.id;
-    const users = AppFileUtil.getData('users');
-    let student = users.find((st) => { return st.id == studentID });
-    if (!student) {
-        res.status(404).send({ message: 'student not found' })
+    const productID = req.params.id;
+    const products = AppFileUtil.getData('products');
+    let product = products.find((st) => { return pd.id == productId });
+    if (!product) {
+        res.status(404).send({ message: 'Product Not Found!' });
+    } else {
+        res.send(product);
     }
-    res.send(student);
+
+    res.send(params);
 })
 
-// /api/products
+// /api/users
 productsRouter.post('/', (req, res) => {
-    const student = req.body;
-    const users = AppFileUtil.getData('users');
-    users.push(student);
-    AppFileUtil.writeData('users', users);
-    res.send({ message: 'new student information saved!' })
+    const product = req.body;
+    const products = AppFileUtil.getData('products');
+    const lastId = products[products.length - 1].id;
+    product.id = lastId + 1;
+    products.push(product);
+    AppFileUtil.writeData('products', products);
+    res.send({ message: 'New product information saved!' });
 })
 
-module.exports = productsRouter;
+module.exports = productsRouter

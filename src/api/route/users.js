@@ -3,42 +3,39 @@ const AppFileUtil = require('../util/file.util');
 
 const usersRouter = express.Router();
 
-// /api/users
+// /api/products
 usersRouter.get('/', (req, res) => {
     const search = req.query.s;
     let result = null;
-    const products = AppFileUtil.getData('products');
+    const users = AppFileUtil.getData('users');
     if (search) {
-        result = products.filter((pd) => { return pd.name.toLowerCase().startsWith(search.toLowerCase()) })
-    } else {
-        result = products;
+        result = users.filter((st) => { return st.name.toLowerCase().startsWith(search.toLowerCase()) })
     }
+    else {
+        result = users;
+    }
+
     res.send(result);
 })
 
-// /api/users/:id
+// /api/products/:id
 usersRouter.get('/:id', (req, res) => {
-    const productID = req.params.id;
-    const products = AppFileUtil.getData('products');
-    let product = products.find((st) => { return pd.id == productId });
-    if (!product) {
-        res.status(404).send({ message: 'Product Not Found!' });
-    } else {
-        res.send(product);
+    const studentID = req.params.id;
+    const users = AppFileUtil.getData('users');
+    let student = users.find((st) => { return st.id == studentID });
+    if (!student) {
+        res.status(404).send({ message: 'student not found' })
     }
-
-    res.send(params);
+    res.send(student);
 })
 
-// /api/users
+// /api/products
 usersRouter.post('/', (req, res) => {
-    const product = req.body;
-    const products = AppFileUtil.getData('products');
-    const lastId = products[products.length - 1].id;
-    product.id = lastId + 1;
-    products.push(product);
-    AppFileUtil.writeData('products', products);
-    res.send({ message: 'New product information saved!' });
+    const student = req.body;
+    const users = AppFileUtil.getData('users');
+    users.push(student);
+    AppFileUtil.writeData('users', users);
+    res.send({ message: 'new student information saved!' })
 })
 
-module.exports = usersRouter
+module.exports = usersRouter;
