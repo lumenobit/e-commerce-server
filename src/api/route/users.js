@@ -3,6 +3,7 @@ const AppFileUtil = require('../util/file.util');
 
 const usersRouter = express.Router();
 
+// /api/users
 usersRouter.get('/', (req, res) => {
     const search = req.query.s;
     let result = null;
@@ -15,6 +16,7 @@ usersRouter.get('/', (req, res) => {
     res.send(result);
 })
 
+// /api/users/:id
 usersRouter.get('/:id', (req, res) => {
     const productID = req.params.id;
     const products = AppFileUtil.getData('products');
@@ -28,6 +30,7 @@ usersRouter.get('/:id', (req, res) => {
     res.send(params);
 })
 
+// /api/users
 usersRouter.post('/', (req, res) => {
     const product = req.body;
     const products = AppFileUtil.getData('products');
