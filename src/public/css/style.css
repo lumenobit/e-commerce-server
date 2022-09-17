@@ -109,3 +109,16 @@
     display: flex;
     padding: 1px 5px;
 }
+
+.position-top-right {
+    position: absolute;
+    top: -11px;
+    right: 18px;
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+    border: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}

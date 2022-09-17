@@ -71,20 +71,29 @@
     </header>
 
     <div class="container app-section">
-        <div class="row">
-            <div class="col-sm-6 col-lg-3 d-flex justify-content-center">
+        <div id="products-loader" class="d-flex align-items-center justify-content-center mb-5">
+            <div class="spinner-border text-primary" role="status">
+            </div>
+        </div>
+        <div class="row" id="product-list">
+
+        </div>
+        <!-- <div class="row">
+            <div class="col-sm-6 col-lg-3 d-flex justify-content-center position-relative">
                 <a href="product-detail.html">
                     <figure>
                         <div class="img-wrapper">
                             <img src="./assets/img/mens.jpg" class="img-thumbnail category-img" alt="Men's Clothings">
                         </div>
                         <figcaption>
+                            <div>Nike Hoodie</div>
                             <span>₹2000/-</span>
                             <span class="text-decoration-line-through text-muted">₹3000/-</span>
                             <span class="text-danger">(20% OFF)</span>
                         </figcaption>
                     </figure>
                 </a>
+                <button class="btn btn-danger btn-icon position-top-right" onclick="deleteProduct(1)"><i class="bi bi-dash-circle"></i></button>
             </div>
             <div class="col-sm-6 col-lg-3 d-flex justify-content-center">
                 <a href="product-detail.html">
@@ -157,7 +166,7 @@
                     </figure>
                 </a>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <footer class="bg-dark text-light py-4 text-center">
@@ -170,6 +179,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/products.js"></script>
 
 </body>
 

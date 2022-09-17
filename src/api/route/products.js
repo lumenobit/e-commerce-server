@@ -10,7 +10,7 @@ productsRouter.get('/', (req, res) => {
     let result = null;
     const products = AppFileUtil.getData('products');
     if (search) {
-        result = products.filter((pd) => { return pd.name.toLowerCase().startsWith(search.toLowerCase()) })
+        result = products.filter(pd => { return pd.name.toLowerCase().startsWith(search.toLowerCase()) })
     } else {
         result = products;
     }
@@ -20,9 +20,9 @@ productsRouter.get('/', (req, res) => {
 // /api/users/:id
 // GET PRODUCTS BY ID
 productsRouter.get('/:id', (req, res) => {
-    const productID = req.params.id;
+    const productId = req.params.id;
     const products = AppFileUtil.getData('products');
-    let product = products.find((st) => { return pd.id == productId });
+    let product = products.find((pd) => { return pd.id == productId });
     if (!product) {
         res.status(404).send({ message: 'Product Not Found!' });
     } else {
@@ -46,5 +46,12 @@ productsRouter.post('/', (req, res) => {
 
 // UPDATE A PRODUCT
 // DELETE A PRODUCT
+
+productsRouter.delete('/:id', (req, res) => {
+    const products = AppFileUtil.getData('products');
+    const product = products.splice(products.findIndex((st) => { return st.id == req.params.id }), 1);
+    AppFileUtil.writeData('products', products);
+    res.send({ message: 'Updating information for - ' + product.name });
+})
 
 module.exports = productsRouter
