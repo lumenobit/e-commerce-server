@@ -28,8 +28,6 @@ productsRouter.get('/:id', (req, res) => {
     } else {
         res.send(product);
     }
-
-    res.send(params);
 })
 
 // /api/users
